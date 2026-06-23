@@ -82,40 +82,7 @@ Decision rule:
 
 Results are visualized using heatmaps and frequency distributions to reveal potential patterns and biases.
 
----
 
-## Project Structure
-
-```text
-fairness-analysis/
-│
-├── data/
-│   ├── dataset_alphabetical.csv
-│   ├── dataset_reverse.csv
-│   ├── dataset_same_prefix.csv
-│   └── dataset_random.csv
-│
-├── results/
-│   ├── kelompokiterasi.csv
-│   ├── data_statistik_pasangan.csv
-│   └── statistical_report.md
-│
-├── visualization/
-│   ├── research_heatmap.png
-│   ├── histogram.png
-│   └── distribution.png
-│
-├── logs/
-│   └── experiment_log.txt
-│
-├── research_site.html
-├── main_research.py
-├── requirements.txt
-├── methodology.md
-└── README.md
-```
-
----
 
 ## Technologies Used
 
