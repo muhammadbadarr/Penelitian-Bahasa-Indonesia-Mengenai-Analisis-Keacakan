@@ -6,235 +6,179 @@
 
 ## Overview
 
-Random group generators are widely used in educational, organizational, and collaborative environments to assign participants into teams. Although these systems claim to produce random results, their fairness and statistical validity are rarely evaluated.
+This project investigates the fairness of an online group generator algorithm through automated experimentation and statistical analysis.
 
-This project provides an experimental framework for assessing the randomness of online group generator algorithms through automated testing, statistical analysis, and data visualization.
+A custom group generator implementing the Fisher–Yates Shuffle algorithm is repeatedly executed using Selenium automation. The generated groups are collected, analyzed, and evaluated using pair co-occurrence frequencies and a Chi-Square Goodness-of-Fit Test.
 
-The study focuses on identifying whether certain individuals or pairs appear together more frequently than expected under a truly random process.
-
----
-
-## Research Objectives
-
-The main objectives of this project are:
-
-- Evaluate the fairness of online group generator algorithms.
-- Detect potential biases in group assignments.
-- Analyze pairwise co-occurrence frequencies.
-- Compare observed results with theoretical random distributions.
-- Provide a reproducible framework for future fairness studies.
+The objective is to determine whether the generated group assignments behave consistently with a random process or exhibit statistically significant bias.
 
 ---
 
-## Methodology
+## Research Method
 
-The evaluation process consists of four stages:
+The experiment consists of four main stages:
 
-### 1. Automated Experimentation
+### 1. Group Generation
 
-Group assignments are generated repeatedly using Selenium-based browser automation.
+Participant names are submitted to the target group generator.
 
-For each iteration:
+The generator uses the Fisher–Yates Shuffle algorithm to randomize the order of names before distributing them into groups.
 
-- Participant names are submitted to the target generator.
-- The algorithm generates groups automatically.
-- Results are extracted and stored for analysis.
+### 2. Automated Testing
 
-### 2. Pair Co-occurrence Analysis
+Selenium WebDriver automatically:
 
-Every possible pair of participants is tracked.
+* Opens the target page
+* Inputs participant names
+* Generates groups
+* Extracts group assignments
+* Repeats the process for multiple iterations
 
-Example:
+### 3. Pair Frequency Analysis
 
-| Group |
-|---------|
-| Alice, Bob, Charlie |
+For every iteration, all participant pairs appearing in the same group are recorded.
 
-Generated pairs:
+The frequency of each pair is calculated across all iterations.
 
-- Alice – Bob
-- Alice – Charlie
-- Bob – Charlie
+### 4. Statistical Evaluation
 
-The frequency of each pair appearing together is recorded across all iterations.
+A Chi-Square Goodness-of-Fit Test compares:
 
-### 3. Statistical Testing
-
-A Chi-Square Goodness-of-Fit Test is performed to compare:
-
-- Observed pair frequencies
-- Expected frequencies under a random distribution
-
-Hypotheses:
-
-**H₀ (Null Hypothesis):**
-Pair frequencies follow a random distribution.
-
-**H₁ (Alternative Hypothesis):**
-Pair frequencies deviate significantly from a random distribution.
+* Observed pair frequencies
+* Expected pair frequencies under a random distribution
 
 Decision rule:
 
-- p-value ≥ 0.05 → Fail to reject H₀
-- p-value < 0.05 → Reject H₀
+* p-value ≥ 0.05 → No significant evidence of bias
+* p-value < 0.05 → Significant bias detected
 
-### 4. Visualization
+---
 
-Results are visualized using heatmaps and frequency distributions to reveal potential patterns and biases.
+## Project Structure
 
+```text
+.
+├── main_research.py
+├── research_site.html
+├── setup_project.py
+│
+├── data_penelitian.csv
+├── kelompokiterasi.csv
+├── data_statistik_pasangan.csv
+│
+└── research_heatmap.png
+```
 
+---
+
+## Files Description
+
+### main_research.py
+
+Main automation and analysis script.
+
+Features:
+
+* Selenium automation
+* Pair frequency calculation
+* Chi-Square testing
+* Heatmap generation
+* CSV export
+
+### research_site.html
+
+Target group generator used for experimentation.
+
+Implements:
+
+* Fisher–Yates Shuffle
+* Dynamic group generation
+* Browser-based interface
+
+### kelompokiterasi.csv
+
+Contains group assignments generated during each iteration.
+
+### data_statistik_pasangan.csv
+
+Contains pair co-occurrence statistics and frequency information.
+
+### data_penelitian.csv
+
+Experimental dataset generated during the research process.
+
+### research_heatmap.png
+
+Visualization of participant co-occurrence frequencies.
+
+### setup_project.py
+
+Utility script for creating a structured research project directory.
+
+---
 
 ## Technologies Used
 
-- Python
-- Selenium
-- Pandas
-- NumPy
-- SciPy
-- Matplotlib
-- Seaborn
-- Chrome WebDriver
+* Python
+* Selenium
+* Pandas
+* SciPy
+* Matplotlib
+* Seaborn
+* WebDriver Manager
 
 ---
 
 ## Installation
 
-Clone the repository:
+Install the required dependencies:
 
 ```bash
-git clone https://github.com/yourusername/fairness-analysis.git
-cd fairness-analysis
-```
-
-Install dependencies:
-
-```bash
-pip install -r requirements.txt
+pip install selenium pandas scipy matplotlib seaborn webdriver-manager
 ```
 
 ---
 
 ## Running the Experiment
 
-Configure the parameters in the source code:
-
-```python
-ITERATIONS = 1000
-GROUP_SIZE = 3
-```
-
-Run the experiment:
+Execute:
 
 ```bash
 python main_research.py
 ```
 
----
+The script will:
 
-## Output Files
-
-### Raw Experimental Data
-
-**kelompokiterasi.csv**
-
-Contains the group assignments generated during each iteration.
-
-### Pair Statistics
-
-**data_statistik_pasangan.csv**
-
-Contains:
-
-- Pair names
-- Observed frequency
-- Expected frequency
-
-### Visualization
-
-**research_heatmap.png**
-
-Displays co-occurrence frequencies between participants.
-
-### Statistical Results
-
-Includes:
-
-- Chi-Square statistic
-- p-value
-- Fairness conclusion
+1. Run multiple group-generation iterations.
+2. Collect pair frequency data.
+3. Perform Chi-Square analysis.
+4. Generate a heatmap visualization.
+5. Export results to CSV files.
 
 ---
 
-## Example Interpretation
+## Output
 
-Example result:
+The experiment produces:
 
-```text
-Chi-Square Statistic = 18.43
-P-Value = 0.8772
-```
-
-Interpretation:
-
-```text
-P-Value > 0.05
-
-Fail to reject H₀
-
-No statistically significant evidence of bias was detected.
-The algorithm's behavior is consistent with a random process.
-```
+| File                        | Description               |
+| --------------------------- | ------------------------- |
+| kelompokiterasi.csv         | Raw group assignments     |
+| data_statistik_pasangan.csv | Pair frequency statistics |
+| research_heatmap.png        | Co-occurrence heatmap     |
 
 ---
 
-## Research Limitations
+## Research Objective
 
-- The analysis assumes independent iterations.
-- Results depend on the number of iterations performed.
-- Different naming patterns may produce different outcomes.
-- The framework evaluates output fairness rather than internal algorithm implementation.
-
----
-
-## Future Work
-
-Potential improvements include:
-
-- Monte Carlo simulation
-- Network analysis of participant relationships
-- Entropy-based randomness metrics
-- Comparison between multiple online generators
-- Large-scale experiments (>100,000 iterations)
-- Machine learning approaches for bias detection
-
----
-
-## Citation
-
-If you use this project in academic work, please cite:
-
-```text
-Badar, M. (2026).
-Fairness Analysis of Online Group Generator Algorithms.
-Politeknik Negeri Bandung.
-```
-
----
-
-## License
-
-This project is released under the MIT License.
+To evaluate whether a group generator based on the Fisher–Yates Shuffle algorithm produces fair and statistically random group assignments.
 
 ---
 
 ## Author
 
-Muhammad Badar  
-Civil Engineering Student  
-Politeknik Negeri Bandung
+Muhammad Badar
 
-Research Area:
-- Algorithm Fairness
-- Statistical Analysis
-- Educational Technology
-- Automation Testing
+Civil Engineering Student
+
+Politeknik Negeri Bandung
