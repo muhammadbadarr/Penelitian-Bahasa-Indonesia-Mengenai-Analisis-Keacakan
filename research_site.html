@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Research Lab: Group Generator</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 40px; background: #f0f2f5; }
+        .box { background: white; padding: 25px; border-radius: 12px; shadow: 0 4px 15px rgba(0,0,0,0.1); max-width: 600px; margin: auto; border: 1px solid #ddd; }
+        textarea { width: 100%; height: 120px; border-radius: 8px; border: 1px solid #ccc; padding: 10px; margin: 10px 0; }
+        button { background: #1a73e8; color: white; border: none; padding: 12px 24px; cursor: pointer; border-radius: 6px; font-weight: bold; width: 100%; }
+        button:hover { background: #1557b0; }
+        #results { margin-top: 25px; padding-top: 15px; border-top: 2px solid #eee; }
+        .group-box { background: #f8f9fa; border-left: 5px solid #1a73e8; padding: 12px; margin-bottom: 10px; border-radius: 4px; }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h2>🔬 Research Target: Randomizer</h2>
+        <p>Daftar Nama (Satu nama per baris):</p>
+        <textarea id="input_names"></textarea>
+        <p>Jumlah Kelompok: <input type="number" id="num_groups" value="2" style="width: 50px;"></p>
+        <button id="generate_btn" onclick="shuffleLogic()">JALANKAN RANDOMISASI</button>
+        <div id="results"></div>
+    </div>
+
+    <script>
+        function shuffleLogic() {
+            const input = document.getElementById('input_names').value;
+            let names = input.split('\n').filter(n => n.trim() !== "");
+            const numGroups = parseInt(document.getElementById('num_groups').value);
+            
+            // Fisher-Yates Shuffle Algorithm (The Target for the Fairness Test)
+            for (let i = names.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [names[i], names[j]] = [names[j], names[i]];
+            }
+
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = "";
+            
+            for (let i = 0; i < numGroups; i++) {
+                const groupMembers = [];
+                for (let j = i; j < names.length; j += numGroups) {
+                    groupMembers.push(names[j]);
+                }
+                if (groupMembers.length > 0) {
+                    const div = document.createElement('div');
+                    div.className = 'group-box';
+                    div.innerHTML = "<strong>Group " + (i + 1) + ":</strong> " + groupMembers.join(", ");
+                    resultsDiv.appendChild(div);
+                }
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+Iterasi,Grup_1,Grup_2,Grup_3
+1,"Alice, Charlie, David","Frank, Eve, Heidi","Grace, Bob"
+2,"Frank, Charlie, Heidi","David, Bob, Alice","Eve, Grace"
+3,"Eve, Bob, Heidi","Alice, Grace, Frank","Charlie, David"
+4,"Bob, Eve, David","Grace, Frank, Alice","Charlie, Heidi"
+5,"Bob, Grace, Frank","David, Heidi, Charlie","Eve, Alice"
+6,"Grace, Eve, Bob","Heidi, Frank, Alice","David, Charlie"
+7,"Heidi, Eve, Alice","Grace, Bob, David","Charlie, Frank"
+8,"Bob, Alice, Heidi","David, Eve, Frank","Grace, Charlie"
+9,"Eve, Frank, Heidi","Grace, David, Charlie","Alice, Bob"
+10,"Charlie, Bob, Heidi","Eve, Frank, Alice","David, Grace"
