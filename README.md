@@ -57,16 +57,25 @@ Decision rule:
 ## Project Structure
 
 ```text
-.
-├── main_research.py
-├── research_site.html
-├── setup_project.py
+Penelitian-Bahasa-Indonesia-Mengenai-Analisis-Keacakan/
 │
-├── data_penelitian.csv
-├── kelompokiterasi.csv
-├── data_statistik_pasangan.csv
+├── src/
+│   ├── main_research.py
+│   ├── research_site.html
+│   └── setup_project.py
 │
-└── research_heatmap.png
+├── data/
+│   ├── data_penelitian.csv
+│   ├── data_statistik_pasangan.csv
+│   └── kelompokiterasi.csv
+│
+├── visualization/
+│   └── research_heatmap.png
+│
+├── README.md
+├── requirements.txt
+├── .gitignore
+└── LICENSE
 ```
 
 ---
