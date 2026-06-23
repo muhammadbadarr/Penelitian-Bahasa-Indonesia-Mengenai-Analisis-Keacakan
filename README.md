@@ -1,2 +1,18 @@
-# Penelitian-Bahasa-Indonesia-Mengenai-Analisis-Keacakan
-Can an online random group generator be trusted? This project automates thousands of group-generation experiments and uses statistical analysis to uncover whether supposedly "random" grouping algorithms are truly fair or secretly biased.
+# Fairness Analysis of Online Group Generator
+
+## Tujuan
+Menganalisis apakah algoritma pembagi kelompok menghasilkan distribusi yang benar-benar acak.
+
+## Metode
+- Selenium Automation
+- Co-occurrence Analysis
+- Chi-Square Goodness of Fit Test
+
+## Cara Menjalankan
+pip install -r requirements.txt
+python main_research.py
+
+## Output
+- kelompokiterasi.csv
+- data_statistik_pasangan.csv
+- research_heatmap.png
