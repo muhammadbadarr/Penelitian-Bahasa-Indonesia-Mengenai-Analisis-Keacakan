@@ -59,10 +59,10 @@ Decision rule:
 ```text
 Penelitian-Bahasa-Indonesia-Mengenai-Analisis-Keacakan/
 │
-├── src/
-│   ├── main_research.py
-│   ├── research_site.html
-│   └── setup_project.py
+│
+├── main_research.py
+├── research_site.html
+├── setup_project.py
 │
 ├── data/
 │   ├── data_penelitian.csv
